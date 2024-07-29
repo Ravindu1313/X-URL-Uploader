@@ -7,7 +7,6 @@ from aiohttp import ClientSession
 from typing import Union
 from .config import Config
 from .translation import Translation
-import server
 
 class BotClient(Client):
 
