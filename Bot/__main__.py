@@ -20,19 +20,21 @@ async def main():
     client.logger.info(f'{client.bot.me.first_name} Started!')
     await idle()
 
-from flask import Flask
- 
-# instance of flask application
+from flask import Flask, jsonify
+
 app = Flask(__name__)
- 
-# home route that returns below text 
-# when root url is accessed
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
- 
+
+@app.route('/')
+def home():
+    return 'Service is running', 200
+
+@app.route('/health')
+def health_check():
+    # You can add more comprehensive health checks here
+    return jsonify({'status': 'healthy'}), 200
+
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    app.run(port=8000)  # Listen on all interfaces on port 80
 
 
 if __name__ == '__main__':
